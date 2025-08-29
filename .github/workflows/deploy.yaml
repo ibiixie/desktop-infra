@@ -1,0 +1,36 @@
+name: Deploy
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: main
+    steps:
+      - name: Checkout Source
+        uses: actions/checkout@v2
+
+      - name: Setup Cloudflare Tunnel
+        env:
+          REMOTE_HOST: ${{ vars.REMOTE_HOST }}
+          CF_TUNNEL_ID: ${{ secrets.CF_TUNNEL_ID }}
+          CF_TUNNEL_SECRET: ${{ secrets.CF_TUNNEL_SECRET }}
+          SSH_CONFIG_FILE: /root/.ssh/config
+        run: ./tunnel_setup.sh
+
+      - name: Deploy Stack to Host
+        uses: ibiixie/stack-deploy-action@feature/multiple-compose-inputs
+        env:
+          EMAIL: ${{ secrets.EMAIL }}
+          DOMAIN: ${{ vars.DOMAIN }}
+          MINIO_KEY: ${{ vars.MINIO_KEY }}
+          MINIO_SECRET: ${{ secrets.MINIO_SECRET }}
+          CF_DNS_API_SECRET: ${{ secrets.CF_DNS_API_SECRET }}
+        with:
+          host: ${{ secrets.REMOTE_HOST }}
+          user: ${{ secrets.REMOTE_USER }}
+          ssh_key: ${{ secrets.REMOTE_PRIVATE_KEY }}
+          file: ./compose.yaml
+          name: desktop-infra
+          mode: compose

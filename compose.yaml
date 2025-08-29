@@ -11,7 +11,7 @@ services:
       - "9000"
       - "9001"
     volumes:
-      - //e/s3:/data
+      - s3_data:/data
 
   caddy:
     build:
@@ -23,3 +23,11 @@ services:
       - "443:443"
     volumes:
       - ./caddy/Caddyfile:/etc/caddy/Caddyfile:ro
+
+volumes:
+  s3_data:
+    driver: local
+    driver_opts:
+      type: none
+      device: //e/s3
+      o: bind
