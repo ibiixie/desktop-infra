@@ -20,7 +20,7 @@ jobs:
         run: sudo sh ./tunnel_setup.sh
 
       - name: Deploy Stack to Host
-        uses: ibiixie/stack-deploy-action@feature/multiple-compose-inputs
+        uses: cssnr/stack-deploy-action@v1.4
         env:
           EMAIL: ${{ secrets.EMAIL }}
           DOMAIN: ${{ vars.DOMAIN }}
