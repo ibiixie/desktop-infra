@@ -17,7 +17,7 @@ jobs:
           CF_TUNNEL_ID: ${{ secrets.CF_TUNNEL_ID }}
           CF_TUNNEL_SECRET: ${{ secrets.CF_TUNNEL_SECRET }}
           SSH_CONFIG_FILE: /root/.ssh/config
-        run: ./tunnel_setup.sh
+        run: sudo sh ./tunnel_setup.sh
 
       - name: Deploy Stack to Host
         uses: ibiixie/stack-deploy-action@feature/multiple-compose-inputs
