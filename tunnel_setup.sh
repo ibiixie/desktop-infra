@@ -18,7 +18,7 @@ chmod 600 /root/.ssh/config
 chmod 700 /root/.ssh
 
 # Add SSH ProxyCommand for cloudflared
-echo Added ProxyCommand to config at $SSH_CONFIG_FILE
-echo "Host $REMOTE_HOST" >> $SSH_CONFIG_FILE
-echo "    ProxyCommand cloudflared access ssh --hostname %h --id $CF_TUNNEL_ID --token $CF_TUNNEL_SECRET" >> $SSH_CONFIG_FILE
+echo Added ProxyCommand to config at /root/.ssh/config
+echo "Host $REMOTE_HOST" >> /root/.ssh/config
+echo "    ProxyCommand cloudflared access ssh --hostname %h --id $CF_TUNNEL_ID --token $CF_TUNNEL_SECRET" >> /root/.ssh/config
 
