@@ -11,6 +11,7 @@ echo 'deb [signed-by=/usr/share/keyrings/cloudflare-main.gpg] https://pkg.cloudf
 sudo apt-get update && sudo apt-get install cloudflared
 
 # Add SSH ProxyCommand for cloudflared
+echo Added ProxyCommand to config at $SSH_CONFIG_FILE
 echo "Host $REMOTE_HOST" >> $SSH_CONFIG_FILE
 echo "    ProxyCommand cloudflared access ssh --hostname %h --id $CF_TUNNEL_ID --token $CF_TUNNEL_SECRET" >> $SSH_CONFIG_FILE
 
