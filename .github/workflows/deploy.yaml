@@ -16,7 +16,7 @@ jobs:
           REMOTE_HOST: ${{ vars.REMOTE_HOST }}
           CF_TUNNEL_ID: ${{ secrets.CF_TUNNEL_ID }}
           CF_TUNNEL_SECRET: ${{ secrets.CF_TUNNEL_SECRET }}
-          SSH_CONFIG_FILE: /root/.ssh/config
+          SSH_CONFIG_FILE: "/root/.ssh/config"
         run: sudo sh ./tunnel_setup.sh
 
       - name: Deploy Stack to Host
