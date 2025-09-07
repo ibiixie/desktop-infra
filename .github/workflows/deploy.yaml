@@ -32,6 +32,7 @@ jobs:
           echo CF_DNS_API_SECRET=${{ secrets.CF_DNS_API_SECRET }} >> ./.env
           echo MINIO_KEY=${{ vars.MINIO_KEY }} >> ./.env
           echo MINIO_SECRET=${{ secrets.MINIO_SECRET }} >> ./.env
+          cat ./.env
 
       - name: Deploy Stack
         uses: rouvenschandl/stack-deploy-action-cf-tunnel@v1.1
