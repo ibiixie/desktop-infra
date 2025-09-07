@@ -3,7 +3,8 @@ on:
   push:
     branches: ["main"]
 
-cleanup-deployments:
+jobs:
+  cleanup-deployments:
     name: Cleanup Deployment History
     runs-on: ubuntu-latest
     environment: production
@@ -16,7 +17,6 @@ cleanup-deployments:
           environment: production
           onlyRemoveDeployments: true
 
-jobs:
   deploy:
     runs-on: ubuntu-latest
     environment: main
