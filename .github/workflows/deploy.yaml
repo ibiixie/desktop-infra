@@ -7,7 +7,7 @@ jobs:
   cleanup-deployments:
     name: Cleanup Deployment History
     runs-on: ubuntu-latest
-    environment: production
+    environment: main
 
     steps:
       - name: Cleanup deployments
