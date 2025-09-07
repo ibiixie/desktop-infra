@@ -3,10 +3,24 @@ on:
   push:
     branches: ["main"]
 
+cleanup-deployments:
+    name: Cleanup Deployment History
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      - name: Cleanup deployments
+        uses: strumwolf/delete-deployment-environment@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          environment: production
+          onlyRemoveDeployments: true
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
     environment: main
+    needs: ["cleanup-deployments"]
     steps:
       - name: Checkout Source
         uses: actions/checkout@v2
