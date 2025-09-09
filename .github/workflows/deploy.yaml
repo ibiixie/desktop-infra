@@ -27,8 +27,6 @@ jobs:
 
       - name: Setup .env
         run: |
-          # Windows was a mistake
-          chcp 65001
           echo EMAIL=${{ secrets.EMAIL }} >> ./.env
           echo DOMAIN=${{ vars.DOMAIN }} >> ./.env
           echo CF_DNS_API_SECRET=${{ secrets.CF_DNS_API_SECRET }} >> ./.env
@@ -36,20 +34,15 @@ jobs:
           echo MINIO_SECRET=${{ secrets.MINIO_SECRET }} >> ./.env
           cat ./.env
 
-      # - name: Deploy Stack
-      #   uses: cssnr/stack-deploy-action@v1.4
-      #   with:
-      #     name: desktop-infra
-      #     mode: compose 
-      #     file: ./compose.yaml
-      #     host: unix:///var/run/docker.sock
-      #     user: ${{ vars.SSH_REMOTE_USER }}
-      #     ssh_key: ${{ secrets.REMOTE_PRIVATE_KEY }}
-      #     env_file: ./.env
-
       - name: Setup Docker Compose
         uses: docker/setup-compose-action@v1
 
       - name: Deploy Stack
         run: |
           docker compose up --remove-orphans --force-recreate
+        env:
+          EMAIL: ${{ secrets.EMAIL }}
+          DOMAIN: ${{ vars.DOMAIN }}
+          CF_DNS_API_SECRET: ${{ secrets.CF_DNS_API_SECRET }}
+          MINIO_KEY: ${{ vars.MINIO_KEY }}
+          MINIO_SECRET: ${{ secrets.MINIO_KEY }}

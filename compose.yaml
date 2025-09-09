@@ -6,7 +6,6 @@ services:
       MINIO_ROOT_USER: ${MINIO_KEY}
       MINIO_ROOT_PASSWORD: ${MINIO_SECRET}
       MINIO_DOMAIN: s3.${DOMAIN}
-    env_file: ./.env
     expose:
       - "9000"
       - "9001"
@@ -17,7 +16,6 @@ services:
     build:
       dockerfile: ./caddy/Dockerfile
       no_cache: true
-    env_file: ./.env
     ports:
       - "80:80"
       - "443:443"
