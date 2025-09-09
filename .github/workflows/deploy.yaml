@@ -30,10 +30,10 @@ jobs:
 
       - name: Deploy Stack
         run: |
-          docker compose up --remove-orphans --force-recreate
+          docker compose up -d --remove-orphans --force-recreate
         env:
           EMAIL: ${{ secrets.EMAIL }}
           DOMAIN: ${{ vars.DOMAIN }}
           CF_DNS_API_SECRET: ${{ secrets.CF_DNS_API_SECRET }}
           MINIO_KEY: ${{ vars.MINIO_KEY }}
-          MINIO_SECRET: ${{ secrets.MINIO_KEY }}
+          MINIO_SECRET: ${{ secrets.MINIO_SECRET }}
