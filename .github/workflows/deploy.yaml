@@ -25,15 +25,6 @@ jobs:
       - name: Checkout Source
         uses: actions/checkout@v2
 
-      - name: Setup .env
-        run: |
-          echo EMAIL=${{ secrets.EMAIL }} >> ./.env
-          echo DOMAIN=${{ vars.DOMAIN }} >> ./.env
-          echo CF_DNS_API_SECRET=${{ secrets.CF_DNS_API_SECRET }} >> ./.env
-          echo MINIO_KEY=${{ vars.MINIO_KEY }} >> ./.env
-          echo MINIO_SECRET=${{ secrets.MINIO_SECRET }} >> ./.env
-          cat ./.env
-
       - name: Setup Docker Compose
         uses: docker/setup-compose-action@v1
 
