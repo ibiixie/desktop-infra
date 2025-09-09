@@ -34,15 +34,13 @@ jobs:
           echo MINIO_SECRET=${{ secrets.MINIO_SECRET }} >> ./.env
           cat ./.env
 
-      # - name: Deploy Stack
-      #   uses: rouvenschandl/stack-deploy-action-cf-tunnel@v1.1
-      #   with:
-      #     name: desktop-infra
-      #     mode: compose 
-      #     file: ./compose.yaml
-      #     host: ${{ vars.REMOTE_HOST }}
-      #     user: ${{ vars.SSH_REMOTE_USER }}
-      #     ssh_key: ${{ secrets.REMOTE_PRIVATE_KEY }}
-      #     cf_service_token_id: ${{ secrets.CF_SERVICE_ID }}
-      #     cf_service_token_secret: ${{ secrets.CF_SERVICE_SECRET }}
-      #     env_file: ./.env
+      - name: Deploy Stack
+        uses: cssnr/stack-deploy-action@v1.4
+        with:
+          name: desktop-infra
+          mode: compose 
+          file: ./compose.yaml
+          host: unix:///var/run/docker.sock
+          user: ${{ vars.SSH_REMOTE_USER }}
+          ssh_key: ${{ secrets.REMOTE_PRIVATE_KEY }}
+          env_file: ./.env
