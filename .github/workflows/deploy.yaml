@@ -27,6 +27,8 @@ jobs:
 
       - name: Setup .env
         run: |
+          # Windows was a mistake
+          chcp 65001
           echo EMAIL=${{ secrets.EMAIL }} >> ./.env
           echo DOMAIN=${{ vars.DOMAIN }} >> ./.env
           echo CF_DNS_API_SECRET=${{ secrets.CF_DNS_API_SECRET }} >> ./.env
