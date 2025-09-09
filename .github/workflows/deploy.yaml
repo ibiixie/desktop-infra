@@ -46,7 +46,7 @@ jobs:
       #     env_file: ./.env
 
       - name: Setup Docker Compose
-        uses: docker/docker-setup-compose@v1.2
+        uses: docker/setup-compose-action@v1
 
       - name: Deploy Stack
         run: |
