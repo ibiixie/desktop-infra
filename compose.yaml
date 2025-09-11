@@ -13,16 +13,20 @@ services:
       - s3_data:/data
 
   caddy:
+    restart: always
     build:
       dockerfile: ./caddy/Dockerfile
       no_cache: true
+    cap_add:
+      - NET_ADMIN
     ports:
       - "80:80"
       - "443:443"
+      - "443:443/udp"
     networks:
       - proxied
     volumes:
-      caddy_data:/data
+      - caddy_data:/data
 
 volumes:
   s3_data:
