@@ -27,6 +27,10 @@ services:
       - proxied
     volumes:
       - caddy_data:/data
+    environment:
+      EMAIL: ${EMAIL}
+      DOMAIN: ${DOMAIN}
+      CF_DNS_API_SECRET: ${CF_DNS_API_SECRET}
 
 volumes:
   s3_data:
