@@ -6,6 +6,7 @@ services:
       MINIO_ROOT_USER: ${MINIO_KEY}
       MINIO_ROOT_PASSWORD: ${MINIO_SECRET}
       MINIO_DOMAIN: s3.${DOMAIN}
+      MINIO_BROWSER_REDIRECT_URL: s3-console.${DOMAIN}
     expose:
       - "9000:9000"
       - "9001:9001"
