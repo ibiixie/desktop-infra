@@ -16,5 +16,6 @@ s3.{$DOMAIN} {
 }
 
 s3-console.{$DOMAIN} {
-    reverse_proxy http://minio:9001
+    respond "Console Disabled"
+    # reverse_proxy http://minio:9001
 }
