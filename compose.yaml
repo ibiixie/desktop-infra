@@ -19,6 +19,8 @@ services:
     ports:
       - "80:80"
       - "443:443"
+    networks:
+      - proxied
 
 volumes:
   s3_data:
@@ -27,3 +29,11 @@ volumes:
       type: none
       device: //e/s3
       o: bind
+
+networks:
+  public:
+    name: public
+    external: true
+  proxied:
+    name: proxied
+    external: true
