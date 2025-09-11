@@ -21,6 +21,8 @@ services:
       - "443:443"
     networks:
       - proxied
+    volumes:
+      caddy_data:/data
 
 volumes:
   s3_data:
@@ -29,6 +31,7 @@ volumes:
       type: none
       device: //e/s3
       o: bind
+  caddy_data:
 
 networks:
   public:
