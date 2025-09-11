@@ -1,18 +1,19 @@
 {
     email {$EMAIL}
-    dns cloudflare {$CF_DNS_API_SECRET}
-	acme_ca https://acme-staging-v02.api.letsencrypt.org/directory
 }
 
 *.s3.{$DOMAIN} {
+    tls internal
     reverse_proxy http://minio:9000
 }
 
 s3.{$DOMAIN} {
+    tls internal
     reverse_proxy http://minio:9000
 }
 
 s3-console.{$DOMAIN} {
+    tls internal
     respond "Console Disabled"
     # reverse_proxy http://minio:9001
 }
