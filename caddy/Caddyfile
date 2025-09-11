@@ -2,18 +2,15 @@
     email {$EMAIL}
 }
 
-*.s3.{$DOMAIN} {
-    tls internal
+http://*.s3.{$DOMAIN} {
     reverse_proxy http://minio:9000
 }
 
-s3.{$DOMAIN} {
-    tls internal
+http://s3.{$DOMAIN} {
     reverse_proxy http://minio:9000
 }
 
-s3-console.{$DOMAIN} {
-    tls internal
+http://s3-console.{$DOMAIN} {
     respond "Console Disabled"
     # reverse_proxy http://minio:9001
 }
