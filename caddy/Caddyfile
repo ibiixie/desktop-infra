@@ -1,13 +1,9 @@
 {
     email {$EMAIL}
+    dns cloudflare {$CF_DNS_API_SECRET}
 }
 
 *.s3.{$DOMAIN} {
-    tls {
-        # Letsencrypt can not do wildcards, have to use cf for that it seems?
-        dns cloudflare {$CF_DNS_API_SECRET}
-    }
-
     reverse_proxy http://minio:9000
 }
 
