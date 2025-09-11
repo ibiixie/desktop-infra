@@ -1,6 +1,6 @@
 {
     email {$EMAIL}
-    acme_dns cloudflare {$CF_DNS_API_SECRET}
+    dns cloudflare {$CF_DNS_API_SECRET}
 	acme_ca https://acme-staging-v02.api.letsencrypt.org/directory
 }
 
