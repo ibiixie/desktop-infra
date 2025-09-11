@@ -7,8 +7,8 @@ services:
       MINIO_ROOT_PASSWORD: ${MINIO_SECRET}
       MINIO_DOMAIN: s3.${DOMAIN}
     expose:
-      - "9000"
-      - "9001"
+      - "9000:9000"
+      - "9001:9001"
     volumes:
       - s3_data:/data
 
