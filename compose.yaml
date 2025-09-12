@@ -6,9 +6,11 @@ services:
       MINIO_ROOT_USER: ${MINIO_KEY}
       MINIO_ROOT_PASSWORD: ${MINIO_SECRET}
       MINIO_DOMAIN: s3.${DOMAIN}
-    ports:
-      - "9000:9000"
-      - "9001:9001"
+    expose:
+      - "9000"
+      - "9001"
+    networks:
+      - proxied
     volumes:
       - s3_data:/data
 
