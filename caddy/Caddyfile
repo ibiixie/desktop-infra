@@ -3,13 +3,25 @@
 }
 
 http://*.s3.{$DOMAIN} {
+    request_body {
+        max_size 1000GB
+    }
+
     reverse_proxy minio:9000
 }
 
 http://s3.{$DOMAIN} {
+    request_body {
+        max_size 1000GB
+    }
+
     reverse_proxy minio:9000
 }
 
 http://s3-console.{$DOMAIN} {
+    request_body {
+        max_size 1000GB
+    }
+
     reverse_proxy minio:9001
 }
