@@ -25,12 +25,13 @@
           pkgs = pkgsFor.x86_64-linux;
         in
         pkgs.mkShell {
-          buildInputs = [
-            pkgs.nil
-            pkgs.nixfmt-rfc-style
-            pkgs.nodejs_24
-            pkgs.yaml-language-server
-            pkgs.nodePackages.prettier
+          buildInputs = with pkgs; [
+            nil
+            nixfmt-rfc-style
+            nodejs_24
+            yaml-language-server
+            nodePackages.prettier
+            minio-client
           ];
         };
 
